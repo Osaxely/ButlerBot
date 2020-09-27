@@ -1,4 +1,5 @@
 import keep_alive
+import manager
 import discord
 from discord.ext import commands
 from discord.ext.commands import has_permissions
@@ -7,6 +8,7 @@ from discord.ext.commands import BadArgument
 import os
 
 client = commands.Bot(command_prefix=commands.when_mentioned_or('.'), case_insensitive=True, help_command=None)
+TOKEN = os.getenv("TOKEN")
 
 @client.command()
 async def load(ctx, extension):
@@ -61,4 +63,6 @@ for social in os.listdir('./cogs/Social'):
         print(social + ' chargé [Social]')
 
 keep_alive.keep_alive()
-client.run(open('token.txt', 'r').readline())
+manager.clear()
+print(TOKEN)
+client.run(TOKEN)
